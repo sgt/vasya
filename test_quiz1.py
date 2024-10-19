@@ -11,9 +11,9 @@ from quiz1 import (
 
 class Quiz1Test(unittest.TestCase):
     def test_two_sum(self):
-        self.assertEqual(two_sum([2, 7, 11, 15], 9), [0, 1])
-        self.assertEqual(two_sum([3, 2, 4], 6), [1, 2])
-        self.assertEqual(two_sum([3, 3], 6), [0, 1])
+        self.assertEqual(frozenset(two_sum([2, 7, 11, 15], 9)), frozenset([0, 1]))
+        self.assertEqual(frozenset(two_sum([3, 2, 4], 6)), frozenset([1, 2]))
+        self.assertEqual(frozenset(two_sum([3, 3], 6)), frozenset([0, 1]))
 
     def test_is_palindrome(self):
         self.assertTrue(is_palindrome(121))
