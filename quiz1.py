@@ -2,6 +2,9 @@
 # примеры -- в test_quiz1.py
 
 def two_sum(nums: list[int], target: int) -> list[int]:
+    for num in range(len(nums)):
+        for n in range(num + 1, len(nums)):
+            if nums[num] + nums[n] == target: return [num, n]
     """
     leetcode #1
 
@@ -14,6 +17,15 @@ def two_sum(nums: list[int], target: int) -> list[int]:
     raise NotImplementedError("Not implemented yet")
 
 def is_palindrome(x: int) -> bool:
+    a=0
+    c=len(str(x))
+    for num in range(c):
+        num+=1
+        b=x%10
+        a+=b*(10**(c-num))
+        x=x//10
+
+    return a
     """
     leetcode #9
 
@@ -24,6 +36,18 @@ def is_palindrome(x: int) -> bool:
     raise NotImplementedError("Not implemented yet")
 
 def longest_common_prefix(strs: list[str]) -> str:
+    str=''
+    equ=False
+    for a in strs:
+        if len(str)<len(a):
+            str=a
+            equ = False
+        elif len(str)==len(a):
+            equ = True
+    if not equ:
+        return str
+    else:
+        return ''
     """
     leetcode #14
 

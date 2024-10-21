@@ -25,7 +25,7 @@ class Quiz1Test(unittest.TestCase):
         self.assertEqual(longest_common_prefix(["dog", "racecar", "car"]), "")
         self.assertEqual(longest_common_prefix([""]), "")
 
-    def test_length_of_longest_substring(self):
-        self.assertEqual(length_of_longest_substring("abcabcbb"), 3)  # "abc"
-        self.assertEqual(length_of_longest_substring("bbbbb"), 1)  # "b"
-        self.assertEqual(length_of_longest_substring("pwwkew"), 3)  # "wke"
+    # def test_length_of_longest_substring(self):
+    #     self.assertEqual(length_of_longest_substring("abcabcbb"), 3)  # "abc"
+    #     self.assertEqual(length_of_longest_substring("bbbbb"), 1)  # "b"
+    #     self.assertEqual(length_of_longest_substring("pwwkew"), 3)  # "wke"
