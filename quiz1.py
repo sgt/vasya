@@ -1,5 +1,29 @@
-# порядок задач -- от более легкой к более сложным, по моей оценке. если что-нибудь не будет получаться, ничего, обсудим
-# примеры -- в bak_test_quiz1.py
+cache_for_find = {}
+
+
+def find_cached(nums: list[int], value: int) -> int:
+    if value in cache_for_find:
+        return cache_for_find[value]
+    i = find(nums, value)
+    cache_for_find[value] = i
+    return i
+
+
+def find(nums: list[int], value: int) -> int:
+    """
+    Возвращает индекс элемента, равного value. Если элемент не найден, возвращает -1.
+    """
+    for i, n in enumerate(nums):
+        if n == value:
+            return i
+
+    return -1
+
+
+def test_find():
+    assert find([20, 1, 8, 153], 8) == 2
+    assert find([20, 1, 8, 153], 18) == -1
+    assert find([], 18) == -1
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
@@ -11,11 +35,23 @@ def two_sum(nums: list[int], target: int) -> list[int]:
     You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
     You can return the answer in any order.
+
+    О(1) -- константная сложность
+    O(n) -- линейная сложность
+    O(n^2) -- квадратная
+    O(log2 n)
+
+    log2 1 = 0
+    log2 2 = 1
+    log2 1024 = 10
+    log2 2048 = 11
+
+    O(n * log n)
     """
-    for num in range(len(nums)):
-        for n in range(num + 1, len(nums)):
-            if nums[num] + nums[n] == target:
-                return [num, n]
+    for i1 in range(len(nums)):
+        for i2 in range(i1 + 1, len(nums)):
+            if nums[i1] + nums[i2] == target:
+                return [i1, i2]
 
 
 def test_two_sum():
@@ -41,6 +77,14 @@ def is_palindrome(x: int) -> bool:
         x = x // 10
 
     return a
+
+
+def is_two(n: int) -> bool:
+    return n == 2
+
+
+def is_pal(x: int) -> bool:
+    return str(x) == reversed(str(x))
 
 
 def test_is_palindrome():
@@ -86,7 +130,7 @@ def length_of_longest_substring(s: str) -> int:
     raise NotImplementedError("Not implemented yet")
 
 
-def test_length_of_longest_substring(self):
+def test_length_of_longest_substring():
     assert length_of_longest_substring("abcabcbb") == 3  # "abc"
     assert length_of_longest_substring("bbbbb") == 1  # "b"
     assert length_of_longest_substring("pwwkew") == 3  # "wke"
