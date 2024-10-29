@@ -1,12 +1,12 @@
-cache_for_find = {}
+def swap(nums: list[int], i1: int, i2: int) -> None:
+    """Меняет местами два элемента внутри списка."""
+    temp = nums[i1]
+    nums[i1] = nums[i2]
+    nums[i2] = temp
 
 
-def find_cached(nums: list[int], value: int) -> int:
-    if value in cache_for_find:
-        return cache_for_find[value]
-    i = find(nums, value)
-    cache_for_find[value] = i
-    return i
+def sort(nums: list[int]) -> None:
+    pass
 
 
 def find(nums: list[int], value: int) -> int:
@@ -24,6 +24,36 @@ def test_find():
     assert find([20, 1, 8, 153], 8) == 2
     assert find([20, 1, 8, 153], 18) == -1
     assert find([], 18) == -1
+
+
+def two_sum_linear(nums: list[int], target: int) -> list[int]:
+    """
+    список чисел -> получить число по индексу
+    словарь (ключ: ... значение:...)
+
+    nums[1000]
+
+    nums (A: 2394801948FDFADG)
+    len(nums) = 4
+
+    A[i] = A+i
+    A[0] = A+0
+    A[1] = A+1
+    A[2] = A+2
+c
+    операция A[i] имеет сложность O(1)
+
+
+
+СЛОВАРЬ
+    d[k]
+
+    """
+    cache: dict[int, int] = dict()
+    for i, n in enumerate(nums):
+        if target - n in cache:
+            return [i, cache[target - n]]
+        cache[n] = i
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
@@ -55,6 +85,7 @@ def two_sum(nums: list[int], target: int) -> list[int]:
 
 
 def test_two_sum():
+    two_sum = two_sum_linear
     assert frozenset(two_sum([2, 7, 11, 15], 9)) == frozenset([0, 1])
     assert frozenset(two_sum([3, 2, 4], 6)) == frozenset([1, 2])
     assert frozenset(two_sum([3, 3], 6)) == frozenset([0, 1])
