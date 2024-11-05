@@ -4,18 +4,24 @@ def swap(nums: list[int], i1: int, i2: int) -> None:
     nums[i1] = nums[i2]
     nums[i2] = temp
 
-def bin_find(list, num):
+def bin_find(nums : list[int], num : int) -> int:
+    """
+    Для отсортированного списка, возвращает индекс элемента, равного value. Если элемент не найден, возвращает -1.
+
+    Сложность: O(log n)
+    """
     left = 0
-    right = len(list) - 1
-    while True:
+    right = len(nums) - 1
+    while left<=right:
         mid = (left + right) // 2
-        if num > list[mid]:
+        if num > nums[mid]:
             left = mid + 1
-        elif num < list[mid]:
+        elif num < nums[mid]:
             right = mid - 1
-        else:
+        elif num == nums[mid]:
             return mid
-            
+    return -1
+
 def sort(nums: list[int]) -> None:
     pass
 
@@ -23,6 +29,8 @@ def sort(nums: list[int]) -> None:
 def find(nums: list[int], value: int) -> int:
     """
     Возвращает индекс элемента, равного value. Если элемент не найден, возвращает -1.
+
+    Сложность: O(n)
     """
     for i, n in enumerate(nums):
         if n == value:
@@ -32,7 +40,9 @@ def find(nums: list[int], value: int) -> int:
 
 
 def test_find():
+    find = bin_find
     assert find([20, 1, 8, 153], 8) == 2
+    assert find([20, 1, 8, 153], 153) == 3
     assert find([20, 1, 8, 153], 18) == -1
     assert find([], 18) == -1
 
@@ -60,11 +70,7 @@ c
     d[k]
 
     """
-    cache: dict[int, int] = dict()
-    for i, n in enumerate(nums):
-        if target - n in cache:
-            return [i, cache[target - n]]
-        cache[n] = i
+
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
