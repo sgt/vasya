@@ -4,7 +4,18 @@ def swap(nums: list[int], i1: int, i2: int) -> None:
     nums[i1] = nums[i2]
     nums[i2] = temp
 
-
+def bin_find(list, num):
+    left = 0
+    right = len(list) - 1
+    while True:
+        mid = (left + right) // 2
+        if num > list[mid]:
+            left = mid + 1
+        elif num < list[mid]:
+            right = mid - 1
+        else:
+            return mid
+            
 def sort(nums: list[int]) -> None:
     pass
 
