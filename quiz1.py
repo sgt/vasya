@@ -1,10 +1,12 @@
 def swap(nums: list[int], i1: int, i2: int) -> None:
-    """Меняет местами два элемента внутри списка."""
+    """ABCD Unicode UTF-8 Меняет местами два элемента внутри списка."""
     temp = nums[i1]
     nums[i1] = nums[i2]
     nums[i2] = temp
+    print ("asdasdas")
 
-def bin_find(nums : list[int], num : int) -> int:
+
+def bin_find(nums: list[int], num: int) -> int:
     """
     Для отсортированного списка, возвращает индекс элемента, равного value. Если элемент не найден, возвращает -1.
 
@@ -12,7 +14,7 @@ def bin_find(nums : list[int], num : int) -> int:
     """
     left = 0
     right = len(nums) - 1
-    while left<=right:
+    while left <= right:
         mid = (left + right) // 2
         if num > nums[mid]:
             left = mid + 1
@@ -22,6 +24,7 @@ def bin_find(nums : list[int], num : int) -> int:
             return mid
     return -1
 
+
 def sort(nums: list[int]) -> None:
     for i in range(1, len(nums)):
         num = nums[i]
@@ -30,6 +33,7 @@ def sort(nums: list[int]) -> None:
             nums[a + 1] = nums[a]
             a -= 1
         nums[a + 1] = num
+
 
 def find(nums: list[int], value: int) -> int:
     """
@@ -75,7 +79,11 @@ c
     d[k]
 
     """
-
+    cache: dict[int, int] = dict()
+    for i, n in enumerate(nums):
+        if target - n in cache:
+            return [i, cache[target - n]]
+        cache[n] = i
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
@@ -113,25 +121,6 @@ def test_two_sum():
     assert frozenset(two_sum([3, 3], 6)) == frozenset([0, 1])
 
 
-def is_palindrome(x: int) -> bool:
-    """
-    leetcode #9
-
-    Given an integer x, return true if x is a palindrome, and false otherwise.
-
-    задача со звездочкой: решить чисто математически, без превращения числа в строку
-    """
-    a = 0
-    c = len(str(x))
-    for num in range(c):
-        num += 1
-        b = x % 10
-        a += b * (10 ** (c - num))
-        x = x // 10
-
-    return a
-
-
 def is_two(n: int) -> bool:
     return n == 2
 
@@ -140,10 +129,8 @@ def is_pal(x: int) -> bool:
     return str(x) == reversed(str(x))
 
 
-def test_is_palindrome():
-    assert is_palindrome(121)
-    assert not is_palindrome(-121)
-    assert not is_palindrome(10)
+def _longest_common_prefix_for_two(s1: str, s2: str) -> str:
+    pass
 
 
 def longest_common_prefix(strs: list[str]) -> str:
