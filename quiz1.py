@@ -23,14 +23,13 @@ def bin_find(nums : list[int], num : int) -> int:
     return -1
 
 def sort(nums: list[int]) -> None:
-      for a in range(len(nums)):
-        min_num = a
-        for b in range(a + 1, len(nums)):
-            if nums[b] < nums[min_num]:
-                min_num = b
-        nums[a], nums[min_num] = nums[min_num], nums[a]
-    return nums
-
+    for i in range(1, len(nums)):
+        num = nums[i]
+        a = i - 1
+        while a >= 0 and nums[a] > num:
+            nums[a + 1] = nums[a]
+            a -= 1
+        nums[a + 1] = num
 
 def find(nums: list[int], value: int) -> int:
     """
