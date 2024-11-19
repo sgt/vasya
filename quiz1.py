@@ -79,9 +79,6 @@ c
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
-    for num in range(len(nums)):
-        for n in range(num + 1, len(nums)):
-            if nums[num] + nums[n] == target: return [num, n]
     """
     leetcode #1
 
@@ -117,15 +114,6 @@ def test_two_sum():
 
 
 def is_palindrome(x: int) -> bool:
-    a=0
-    c=len(str(x))
-    for num in range(c):
-        num+=1
-        b=x%10
-        a+=b*(10**(c-num))
-        x=x//10
-
-    return a
     """
     leetcode #9
 
@@ -159,20 +147,8 @@ def test_is_palindrome():
 
 
 def longest_common_prefix(strs: list[str]) -> str:
-    str=''
-    equ=False
-    for a in strs:
-        if len(str)<len(a):
-            str=a
-            equ = False
-        elif len(str)==len(a):
-            equ = True
-    if not equ:
-        return str
-    else:
-        return ''
     """
-    leetcode #14ER54T
+    leetcode #14
 
     Write a function to find the longest common prefix string amongst an array of strings.
 
@@ -204,27 +180,10 @@ def length_of_longest_substring(s: str) -> int:
 
     Given a string s, find the length of the longest substring without repeating characters.
     """
-
-
-    a = set()
-    left = 0
-    max = 0
-
-    for right in range(len(s)):
-        while s[right] in a:
-            a.remove(s[left])
-            left += 1
-        a.add(s[right])
-        max = max(max, right - left + 1)
-
-    return max
-
-
+    raise NotImplementedError("Not implemented yet")
 
 
 def test_length_of_longest_substring():
     assert length_of_longest_substring("abcabcbb") == 3  # "abc"
     assert length_of_longest_substring("bbbbb") == 1  # "b"
     assert length_of_longest_substring("pwwkew") == 3  # "wke"
-
-
