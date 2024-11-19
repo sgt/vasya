@@ -180,6 +180,18 @@ def length_of_longest_substring(s: str) -> int:
 
     Given a string s, find the length of the longest substring without repeating characters.
     """
+        a = set()
+    left = 0
+    max = 0
+
+    for right in range(len(s)):
+        while s[right] in a:
+            a.remove(s[left])
+            left += 1
+        a.add(s[right])
+        max = max(max, right - left + 1)
+
+    return max
     raise NotImplementedError("Not implemented yet")
 
 
