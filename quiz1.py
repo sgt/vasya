@@ -172,7 +172,7 @@ def longest_common_prefix(strs: list[str]) -> str:
     else:
         return ''
     """
-    leetcode #14
+    leetcode #14ER54T
 
     Write a function to find the longest common prefix string amongst an array of strings.
 
@@ -204,10 +204,27 @@ def length_of_longest_substring(s: str) -> int:
 
     Given a string s, find the length of the longest substring without repeating characters.
     """
-    raise NotImplementedError("Not implemented yet")
+
+
+    a = set()
+    left = 0
+    max = 0
+
+    for right in range(len(s)):
+        while s[right] in a:
+            a.remove(s[left])
+            left += 1
+        a.add(s[right])
+        max = max(max, right - left + 1)
+
+    return max
+
+
 
 
 def test_length_of_longest_substring():
     assert length_of_longest_substring("abcabcbb") == 3  # "abc"
     assert length_of_longest_substring("bbbbb") == 1  # "b"
     assert length_of_longest_substring("pwwkew") == 3  # "wke"
+
+
