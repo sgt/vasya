@@ -154,18 +154,14 @@ def longest_common_prefix(strs: list[str]) -> str:
 
     If there is no common prefix, return an empty string "".
     """
-    str = ""
-    equ = False
-    for a in strs:
-        if len(str) < len(a):
-            str = a
-            equ = False
-        elif len(str) == len(a):
-            equ = True
-    if not equ:
-        return str
-    else:
-        return ""
+    strs.sort()
+    first = strs[0]
+    last = strs[-1]
+    minLength = min(len(first), len(last))
+    i = 0
+    while i < minLength and first[i] == last[i]:
+        i += 1
+    return first[:i]
 
 
 def test_longest_common_prefix():
@@ -182,17 +178,16 @@ def length_of_longest_substring(s: str) -> int:
     """
         a = set()
     left = 0
-    max = 0
+    maxs = 0
 
     for right in range(len(s)):
         while s[right] in a:
             a.remove(s[left])
             left += 1
         a.add(s[right])
-        max = max(max, right - left + 1)
+        maxs = max(maxs, right - left + 1)
 
-    return max
-    raise NotImplementedError("Not implemented yet")
+    return maxs
 
 
 def test_length_of_longest_substring():
