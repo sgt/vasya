@@ -157,9 +157,9 @@ def longest_common_prefix(strs: list[str]) -> str:
     strs.sort()
     first = strs[0]
     last = strs[-1]
-    minLength = min(len(first), len(last))
+    minl = min(len(first), len(last))
     i = 0
-    while i < minLength and first[i] == last[i]:
+    while i < minl and first[i] == last[i]:
         i += 1
     return first[:i]
 
