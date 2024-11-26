@@ -4,7 +4,8 @@ def swap(nums: list[int], i1: int, i2: int) -> None:
     nums[i1] = nums[i2]
     nums[i2] = temp
 
-def bin_find(nums : list[int], num : int) -> int:
+
+def bin_find(nums: list[int], num: int) -> int:
     """
     Для отсортированного списка, возвращает индекс элемента, равного value. Если элемент не найден, возвращает -1.
 
@@ -12,7 +13,7 @@ def bin_find(nums : list[int], num : int) -> int:
     """
     left = 0
     right = len(nums) - 1
-    while left<=right:
+    while left <= right:
         mid = (left + right) // 2
         if num > nums[mid]:
             left = mid + 1
@@ -22,6 +23,7 @@ def bin_find(nums : list[int], num : int) -> int:
             return mid
     return -1
 
+
 def sort(nums: list[int]) -> None:
     for i in range(1, len(nums)):
         num = nums[i]
@@ -30,6 +32,7 @@ def sort(nums: list[int]) -> None:
             nums[a + 1] = nums[a]
             a -= 1
         nums[a + 1] = num
+
 
 def find(nums: list[int], value: int) -> int:
     """
@@ -75,7 +78,6 @@ c
     d[k]
 
     """
-
 
 
 def two_sum(nums: list[int], target: int) -> list[int]:
@@ -165,9 +167,11 @@ def longest_common_prefix(strs: list[str]) -> str:
 
 
 def test_longest_common_prefix():
-    assert "fl" == longest_common_prefix(["flower", "flow", "flight"])
-    assert "" == longest_common_prefix(["dog", "racecar", "car"])
-    assert "" == longest_common_prefix([""])
+    assert longest_common_prefix(["flower", "flow", "flight"]) == "fl"
+    assert longest_common_prefix(["dog", "racecar", "car"]) == ""
+    assert longest_common_prefix([""]) == ""
+    assert longest_common_prefix(["", ""]) == ""
+    assert longest_common_prefix(["ab", "a"]) == "a"
 
 
 def length_of_longest_substring(s: str) -> int:
@@ -176,15 +180,15 @@ def length_of_longest_substring(s: str) -> int:
 
     Given a string s, find the length of the longest substring without repeating characters.
     """
-        a = set()
+    seen = set()
     left = 0
     maxs = 0
 
     for right in range(len(s)):
-        while s[right] in a:
-            a.remove(s[left])
+        while s[right] in seen:
+            seen.remove(s[left])
             left += 1
-        a.add(s[right])
+        seen.add(s[right])
         maxs = max(maxs, right - left + 1)
 
     return maxs

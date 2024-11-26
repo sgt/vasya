@@ -4,11 +4,14 @@ class TicTacToe:
         self.board =['___','___','___']
         self.who_play=1
 
+    def _check_is_triplet_winning(self, positions:list[int], player:str)->bool:
+        pass
+
     def is_over(self) -> bool:
         raise NotImplementedError
 
     def state(self) -> str:
-        # 'X_WON', 'O_WON', 'TIE', 'ERROR'
+        # 'X_WON', 'O_WON', 'TIE', 'ERROR', 'XS_TURN', 'OS_TURN'
         raise NotImplementedError
 
     def current_player(self) -> str:
@@ -20,33 +23,31 @@ class TicTacToe:
             return 'O'
         raise NotImplementedError
 
-    def make_turn(self, x: int, y: int ,who: str) -> None:
-        self.board[y][x]=who
+    def make_turn(self, pos:int) -> None:
+        raise NotImplementedError
 
     def print(self):
         print(self.board[0])
         print(self.board[0])
         print(self.board[0])
 
-if __name__ == '__main__':
+def test_game():
     game = TicTacToe()
+    assert not game.is_over()
+    assert game.current_player() == 'X'
+    assert game.state() == 'XS_TURN'
+    game.make_turn(5)
+    assert game.current_player() == 'O'
+    assert game.state() == 'OS_TURN'
+    game.make_turn(1)
+    game.make_turn(2)
+    game.make_turn(3)
+    game.make_turn(8)
+    assert game.state() == 'X_WON'
 
-    while not game.is_over():
-        game.print()
-        # спрашиваем ход текущего игрока
-        a=game.current_player()
-        print("Ход игрока " + a)
-        x, y = input()
-        game.make_turn(x, y,a)
+def test_tie():
+    pass
 
-    match game.state():
-        case 'X_WON':
-            print("победил крестик")
-        case 'O_WON':
-            print("победил нолик")
-        case 'TIE':
-            print("ничья")
-        case 'ERROR':
-            print("невозможное состояние игры")
-        case _:
-            print("непонятный результат")
+# X 2 3
+# 4 5 O
+# 7 8 9
