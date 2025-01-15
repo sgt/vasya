@@ -1,3 +1,6 @@
+import pytest
+
+
 def swap(nums: list[int], i1: int, i2: int) -> None:
     """Меняет местами два элемента внутри списка."""
     temp = nums[i1]
